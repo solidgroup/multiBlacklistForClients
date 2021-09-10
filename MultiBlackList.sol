@@ -1,3 +1,5 @@
+pragma solidity ^0.4.0;
+
 
 interface IUniswapV2Factory {
     event PairCreated(address indexed token0, address indexed token1, address pair, uint);
@@ -16,7 +18,7 @@ interface IUniswapV2Factory {
 }
 
 contract multiBlackListForClients {
-    mapping (address => bool) blacklist public;
+    mapping (address => bool) blacklist ;
     address pairAddress;
     // The team need to add the factory address
     address pcsFactoryAddress = "";
@@ -24,7 +26,6 @@ contract multiBlackListForClients {
     constructor(){
         // read create pair documentation - this function expect to get the pool's tokens.
         pairAddress = IUniswapV2Factory(pcsFactoryAddress).createPair(address(this), "tokenB address which will be in the pool");
-        ......
     }
 
     function multiBlacklist(address[] memory addresses) external onlyOwner {
@@ -42,7 +43,7 @@ contract multiBlackListForClients {
 
     function _transfer(address from, address to, uint256 amount){
         require(!blacklist[from] && !blacklist[to], "the address is blacklisted");
-        
+
     }
 
 }
