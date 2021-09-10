@@ -1,4 +1,3 @@
-pragma solidity ^0.4.0;
 
 
 interface IUniswapV2Factory {
